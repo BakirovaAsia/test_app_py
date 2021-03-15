@@ -7,8 +7,7 @@ WORKDIR /tmp/test/
 COPY . .
 # Установить зависимости из файла requirements.txt
 RUN pip install -qr requirements.txt
+# Настраиваем команду, которая должна быть запущена в контейнере во время его выполнения
+ENTRYPOINT ["python", "./app.py"]
 # Открываем порты
 EXPOSE 5000
-# Настраиваем команду, которая должна быть запущена в контейнере во время его выполнения
-ENTRYPOINT ["python", "./app.py""]
-
