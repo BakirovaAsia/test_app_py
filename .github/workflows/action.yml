@@ -3,7 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ test_actions ]
-    tags: "v*"
+    tags:
+      - v*
   
 jobs:
   build:
