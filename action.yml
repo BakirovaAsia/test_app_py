@@ -1,9 +1,21 @@
-# action.yml
-name: 'Build and publish docker image'
-description: 'Build docker image from branch main on tag v'
-outputs:
-  testlogs: # id of output
-    description: 'logs of testing'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
+name: Docker Image CI/CD
+on:
+  push:
+    branches: [ test_actions ]
+    tags:
+      - v*
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the Docker image
+      run: docker build -t my_image . && docker tag my_image:latest bakirovaasia/my_image:latest 
+
+    - name: Login in DockerHub
+      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push image to DockerHub
+      run:  docker push bakirovaasia/my_image:latest
