@@ -1,0 +1,9 @@
+# action.yml
+name: 'Build and publish docker image'
+description: 'Build docker image from branch main on tag v'
+outputs:
+  testlogs: # id of output
+    description: 'logs of testing'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
