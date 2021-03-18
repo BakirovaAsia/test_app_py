@@ -4,7 +4,7 @@ on:
   push:
     branches: 
       - test_actions
-  tags:
+    tags:
       - "v*"
   
 jobs:
